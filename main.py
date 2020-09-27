@@ -1,3 +1,6 @@
+from decimal import Decimal, ROUND_HALF_DOWN
+
+
 class Portfolio:
     def __init__(self, name, amount, risk):
         self.name = name
@@ -58,8 +61,15 @@ user = User('112954-1264612', portfolio_list, [one_time_plan, monthly_plan])
 # end emulated DB
 
 
+def process_deposit(deposit_plans, cash_received):
+    # can have additional check to check for plan uniqueness
+    assert len(deposit_plans) <= 2, 'too many input plans'
+    for plan in deposit_plans:
+        assert isinstance(plan, DepositPlan), 'wrong argument type!'
+
+
 def main():
-    print('hello world')
+    process_deposit([one_time_plan, monthly_plan], 1000)
 
 
 if __name__ == "__main__":
