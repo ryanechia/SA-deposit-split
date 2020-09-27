@@ -67,6 +67,27 @@ def process_deposit(deposit_plans, cash_received):
     for plan in deposit_plans:
         assert isinstance(plan, DepositPlan), 'wrong argument type!'
 
+    cash = Decimal(cash_received)
+    global portfolio_list
+
+    # SEMI-HAPPY PATH - users will deposit equal or more money than plans require. use case for less deposit not handled
+    for plan in deposit_plans:
+        if plan.completed is False:
+            for portfolio in portfolio_list:
+                for deposit in plan.deposits:
+                    if portfolio.name == deposit.target_portfolio:
+                        # distribute deposited money to all portfolios
+                        deposit_amt = Decimal(cash_received) * Decimal(deposit.ratio)
+
+                        if deposit_amt > deposit.amount:
+                            deposit_amt = Decimal(deposit.amount)
+                        # perform rounding at the last possible moment
+                        deposit_amt = deposit_amt.quantize(Decimal('.01'), rounding=ROUND_HALF_DOWN)
+                        portfolio.amount += deposit_amt
+                        cash -= deposit_amt
+                    if plan.recurrence == 'one_time':
+                        plan.completed = True
+
 
 def main():
     # modify the plans and the amount here for repl.it run
