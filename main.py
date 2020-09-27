@@ -52,6 +52,7 @@ high_risk_portfolio = Portfolio('high_risk', 0, 'high_risk')
 general_investment_portfolio = Portfolio('core', 0, 'core')
 buy_a_home_portfolio = Portfolio('buy_a_home', 0, 'core')
 portfolio_list = [high_risk_portfolio, general_investment_portfolio, buy_a_home_portfolio]
+user = User('112954-1264612', portfolio_list, [one_time_plan, monthly_plan])
 
 
 # end emulated DB
