@@ -20,6 +20,7 @@ class Deposit:
         self.target_portfolio = target_portfolio
         self.amount = amount
         self.currency = currency,
+        self.ratio = ratio  # assume that on creation of a Deposit object the ratio is calculated and stored
 
 
 class User:
@@ -32,18 +33,18 @@ class User:
 # we're not going to handle creating new plans. user has already created 2 plans.
 one_time_plan = DepositPlan(
     [
-        Deposit('high_risk', 100, 'sgd'),
-        Deposit('core', 200, 'sgd'),
-        Deposit('buy_a_home', 300, 'sgd')
+        Deposit('high_risk', 100, 'sgd', 1 / 6),
+        Deposit('core', 200, 'sgd', 2 / 6),
+        Deposit('buy_a_home', 300, 'sgd', 3 / 6)
     ],
     'one_time',
     False
 )
 monthly_plan = DepositPlan(
     [
-        Deposit('high_risk', 20, 'sgd'),
-        Deposit('core', 10, 'sgd'),
-        Deposit('buy_a_home', 30, 'sgd')
+        Deposit('high_risk', 20, 'sgd', 2 / 6),
+        Deposit('core', 10, 'sgd', 1 / 6),
+        Deposit('buy_a_home', 30, 'sgd', 3 / 6)
     ],
     'monthly',
     False
