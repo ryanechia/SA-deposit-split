@@ -69,6 +69,7 @@ def process_deposit(deposit_plans, cash_received):
 
 
 def main():
+    # modify the plans and the amount here for repl.it run
     process_deposit([one_time_plan, monthly_plan], 1000)
 
 
