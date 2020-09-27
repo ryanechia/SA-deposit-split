@@ -26,6 +26,27 @@ class User:
         self.deposit_plans = deposit_plans
 
 
+# we're not going to handle creating new plans. user has already created 2 plans.
+one_time_plan = DepositPlan(
+    [
+        Deposit('high_risk', 100, 'sgd'),
+        Deposit('core', 200, 'sgd'),
+        Deposit('buy_a_home', 300, 'sgd')
+    ],
+    'one_time',
+    False
+)
+monthly_plan = DepositPlan(
+    [
+        Deposit('high_risk', 20, 'sgd'),
+        Deposit('core', 10, 'sgd'),
+        Deposit('buy_a_home', 30, 'sgd')
+    ],
+    'monthly',
+    False
+)
+
+
 def main():
     print('hello world')
 
