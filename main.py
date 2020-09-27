@@ -89,6 +89,10 @@ def process_deposit(deposit_plans, cash_received):
                     if plan.recurrence == 'one_time':
                         plan.completed = True
 
+    # console output the result
+    for portfolio in portfolio_list:
+        print(portfolio.name + ' ' + str(portfolio.amount))
+
 
 def main():
     # modify the plans and the amount here for repl.it run
