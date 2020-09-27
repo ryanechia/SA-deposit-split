@@ -89,6 +89,21 @@ def process_deposit(deposit_plans, cash_received):
                     if plan.recurrence == 'one_time':
                         plan.completed = True
 
+    # if there's some left then see allocate to monthly
+    if cash > 0:
+        leftover_cash = cash
+        for plan in deposit_plans:
+            if plan.recurrence == 'monthly' and plan.completed is False:
+                for portfolio in portfolio_list:
+                    for deposit in plan.deposits:
+                        if portfolio.name == deposit.target_portfolio:
+                            # distribute remaining money to all portfolios
+                            deposit_amt = Decimal(leftover_cash) * Decimal(deposit.ratio)
+                            # perform rounding at the last possible moment
+                            deposit_amt = deposit_amt.quantize(Decimal('.01'), rounding=ROUND_HALF_DOWN)
+                            portfolio.amount += deposit_amt
+                            cash -= deposit_amt
+
     # console output the result
     for portfolio in portfolio_list:
         print(portfolio.name + ' ' + str(portfolio.amount))
