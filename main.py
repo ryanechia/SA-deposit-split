@@ -85,6 +85,7 @@ def process_deposit(deposit_plans, cash_received):
                         deposit_amt = deposit_amt.quantize(Decimal('.01'), rounding=ROUND_HALF_DOWN)
                         portfolio.amount += deposit_amt
                         cash -= deposit_amt
+                    # naive one time deposit plan handling
                     if plan.recurrence == 'one_time':
                         plan.completed = True
 
