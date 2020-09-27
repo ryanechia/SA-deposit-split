@@ -12,7 +12,7 @@ class DepositPlan:
     def __init__(self, deposits, recurrence, completed):
         self.deposits = deposits
         self.recurrence = recurrence
-        self.completed = completed
+        self.completed: bool = completed
 
 
 class Deposit:
