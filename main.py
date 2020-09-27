@@ -46,6 +46,16 @@ monthly_plan = DepositPlan(
     False
 )
 
+# we're not going to handle creating new portfolios.
+# emulated DB
+high_risk_portfolio = Portfolio('high_risk', 0, 'high_risk')
+general_investment_portfolio = Portfolio('core', 0, 'core')
+buy_a_home_portfolio = Portfolio('buy_a_home', 0, 'core')
+portfolio_list = [high_risk_portfolio, general_investment_portfolio, buy_a_home_portfolio]
+
+
+# end emulated DB
+
 
 def main():
     print('hello world')
